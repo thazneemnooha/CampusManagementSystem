@@ -5,23 +5,29 @@ import model.Student;
 
 public class HashManager {
 
-private HashMap<String, Student> studentMap;
-public HashManager() {
-studentMap = new HashMap<>();
-}
+    private HashMap<String, Student> studentMap;
+    
+    public HashManager() {
+    studentMap = new HashMap<>();
+    }
 
-public void addStudent(Student student) {
-studentMap.put(student.getStudentId(), student);
-}
-public Student searchStudent(String studentId) {
-return studentMap.get(studentId);
-}
-public void displayAllStudents() {
+    public void addStudent(Student student) {
+    studentMap.put(student.getStudentId(), student);
+    }
 
-for (Student student : studentMap.values()) {
-System.out.println(student);
-}
-}
+    public Student searchStudent(String studentId) {
+    return studentMap.get(studentId);
+    }
 
+    public void displayAllStudents() {
+
+        for (Student student : studentMap.values()) {
+        System.out.println(student);
+        }
+    }
+
+    public void removeStudent(String studentId) {
+        studentMap.remove(studentId);
+    }
 
 }

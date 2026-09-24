@@ -10,34 +10,45 @@ import java.util.HashSet;
 
 public class CampusGraph {
 
-private HashMap<String, ArrayList<String>> adjacencyList;
+    private HashMap<String, ArrayList<String>> adjacencyList;
 
-public CampusGraph() {
-adjacencyList = new HashMap<>();
-}
-public void addLocation(String location) {
+    public CampusGraph() {
+    adjacencyList = new HashMap<>();
+    }
 
-if (!adjacencyList.containsKey(location)) {
-adjacencyList.put(location, new ArrayList<>());
-}
-}
-public void removeLocation(String location) {
+    public void addLocation(String location) {
 
-adjacencyList.remove(location);
+        if (adjacencyList.containsKey(location)) {
 
-for (ArrayList<String> neighbours : adjacencyList.values()) {
-neighbours.remove(location);
-}
-}
-public void addConnection(String location1, String location2) {
+            System.out.println("Location already exists.");
+            return;
+        }
 
-if (adjacencyList.containsKey(location1) &&
-adjacencyList.containsKey(location2)) {
+        adjacencyList.put(location, new ArrayList<>());
+    }
 
-adjacencyList.get(location1).add(location2);
-adjacencyList.get(location2).add(location1);
-}
-}
+    public void removeLocation(String location) {
+
+    adjacencyList.remove(location);
+
+        for (ArrayList<String> neighbours : adjacencyList.values()) {
+        neighbours.remove(location);
+        }
+    }
+
+   public void addConnection(String location1, String location2) {
+
+        if (!adjacencyList.containsKey(location1) ||
+            !adjacencyList.containsKey(location2)) {
+
+            System.out.println("One or both locations do not exist.");
+            return;
+        }
+
+        adjacencyList.get(location1).add(location2);
+        adjacencyList.get(location2).add(location1);
+    }
+
 public void removeConnection(String location1, String location2) {
 
 if (adjacencyList.containsKey(location1) &&
